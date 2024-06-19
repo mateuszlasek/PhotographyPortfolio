@@ -19,15 +19,11 @@
         This my portfolio :
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="grid gap-4">
-                <img class="h-auto max-w-full rounded-lg" src="{{ asset('images/ostoya_fire.jpeg') }}" alt="Ostoya Black Fire Image">
-            </div>
-            <div class="grid gap-4">
-                <img src="{{ asset('images/bombay_sapphire.jpeg') }}" alt="Bombay Sapphire Image">
-            </div>
-            <div class="grid gap-4">
-                <img class="h-auto max-w-full rounded-lg" src="{{ asset('images/nike_jordan_red.jpeg') }}" alt="Nike Jordan Shoe Image">
-            </div>
+            {% for photo in photos %}
+                <div class="grid gap-4">
+                <img src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error">
+                </div>
+            {% endfor %}
         </div>
 
     </div>
