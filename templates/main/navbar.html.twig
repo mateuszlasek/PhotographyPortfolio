@@ -1,18 +1,17 @@
-{# navbar.html.twig #}
-
-<nav class="bg-gray-800 shadow-lg">
-    <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-            <div class="flex-shrink-0">
-                <a href="{{ path('app_main') }}" class="text-white text-lg font-semibold">Moja Strona</a>
-            </div>
-            <div class="hidden md:block">
-                <div class="ml-10 flex items-baseline space-x-4">
-                    <a href="{{ path('app_main') }}" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">O nas</a>
-                    <a href="{{ path('app_main') }}" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Usługi</a>
-                    <a href="{{ path('app_main') }}" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Portfolio</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<a href="#">
+    <img class="h-[42px]" src="{{ asset('images/starshop-logo.png') }}" alt="starshop logo">
+</a>
+<nav class="flex space-x-4 font-semibold">
+    <a class="hover:text-amber-400 pt-2" href="#">
+        Home
+    </a>
+    <a class="hover:text-amber-400  pt-2" href="#">
+        About
+    </a>
+    <a class="hover:text-amber-400 pt-2" href="#">
+        Contact
+    </a>
+    <a class="rounded-[60px] py-2 px-5 bg-white/10 hover:bg-white/20" href="#">
+        Get Started
+    </a>
 </nav>
