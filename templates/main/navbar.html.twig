@@ -1,18 +1,14 @@
-{# navbar.html.twig #}
-
-<nav class="bg-gray-800 shadow-lg">
-    <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-            <div class="flex-shrink-0">
-                <a href="{{ path('app_main') }}" class="text-white text-lg font-semibold">Moja Strona</a>
-            </div>
-            <div class="hidden md:block">
-                <div class="ml-10 flex items-baseline space-x-4">
-                    <a href="{{ path('app_main') }}" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">O nas</a>
-                    <a href="{{ path('app_main') }}" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Usługi</a>
-                    <a href="{{ path('app_main') }}" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Portfolio</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<a href="#" class="text-xl font-bold">
+    <h1>Szyfotomon</h1>
+</a>
+<nav class="w-full flex items-center justify-center mt-4 md:mt-0 space-x-2">
+    <a class="block md:inline-block px-4 py-2 {% if active == 'portfolio' %}underline{% endif %} hover:text-amber-400" href="{{ path('app_main') }}">
+        Portfolio
+    </a>
+    <a class="block md:inline-block px-4 py-2 {% if active == 'about' %}underline{% endif %} hover:text-amber-400" href="#">
+        About me
+    </a>
+    <a class="block md:inline-block px-4 py-2 {% if active == 'contact' %}underline{% endif %} hover:text-amber-400" href="#">
+        Contact
+    </a>
 </nav>

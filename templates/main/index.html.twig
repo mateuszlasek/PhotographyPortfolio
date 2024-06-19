@@ -1,7 +1,8 @@
-{# index.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Portfolio{% endblock %}
+
+{% set active = 'portfolio' %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -13,12 +14,17 @@
 
 {% block body %}
     <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
+        <h1>Hello I am a photographer :|</h1>
 
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code>C:/Users/mateu/PhpstormProjects/PhotographyPortfolio/src/Controller/MainController.php</code></li>
-            <li>Your template at <code>C:/Users/mateu/PhpstormProjects/PhotographyPortfolio/templates/main/index.html.twig</code></li>
-        </ul>
+        This my portfolio :
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {% for photo in photos %}
+                <div class="grid gap-4">
+                <img src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error">
+                </div>
+            {% endfor %}
+        </div>
+
     </div>
 {% endblock %}
