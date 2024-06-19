@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\PhotoRepository;
 use Psr\Cache\InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -16,14 +17,20 @@ class MainController extends AbstractController
      * @throws InvalidArgumentException
      */
     #[Route('/main', name: 'app_main')]
-    public function index(PhotoRepository $photoRepository, CacheInterface $cache): Response
+    public function index(CacheInterface $cache): Response
     {
-        $cacheKey = 'main_index_photos';
+        $photos = $cache->get('photos_list', function () {
+            $imagePath = $this->getParameter('kernel.project_dir') . '/assets/images';
 
-        $photos = $cache->get($cacheKey, function (ItemInterface $item) use ($photoRepository) {
-            $item->expiresAfter(3600);
+            $finder = new Finder();
+            $files = $finder->files()->in($imagePath);
 
-            return $photoRepository->findAll();
+            $photos = [];
+            foreach ($files as $file) {
+                $photos[] = $file->getFilename();
+            }
+
+            return $photos;
         });
 
         return $this->render('main/index.html.twig', [
