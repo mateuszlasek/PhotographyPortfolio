@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     {% block stylesheets %}
     {% endblock %}
 
@@ -15,11 +17,11 @@
 <div class="flex flex-col justify-between min-h-screen relative">
     <div>
         <header class="h-20 shrink-0 flex flex-col sm:flex-row items-center sm:justify-between py-4 sm:py-0 px-6">
-        {% include 'main/_navbar.html.twig' %}
+        {% include '_navbar.html.twig' %}
         </header>
         {% block body %}{% endblock %}
     </div>
-    {% include 'main/_footer.html.twig' %}
+    {% include '_footer.html.twig' %}
 </div>
 </body>
 </html>

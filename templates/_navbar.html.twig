@@ -1,0 +1,14 @@
+<nav class="w-full flex items-center justify-center mt-4 md:mt-0 space-x-5">
+    <a class="active-link underline-animation block md:inline-block px-4 py-2 {% if active == 'main' %}active{% endif %}" href="{{ path('app_main') }}">
+        Strona główna
+    </a>
+    <a class="active-link underline-animation block md:inline-block px-4 py-2 {% if active == 'portfolio' %}active{% endif %}" href="{{ path('portfolio') }}">
+        Portfolio
+    </a>
+    <a class="active-link underline-animation block md:inline-block px-4 py-2 {% if active == 'about' %}active{% endif %}" href="{{ path('about')}}">
+        O mnie
+    </a>
+    <a class="active-link underline-animation block md:inline-block px-4 py-2 {% if active == 'contact' %}active{% endif %}" href="{{ path('contact') }}">
+        Kontakt
+    </a>
+</nav>
