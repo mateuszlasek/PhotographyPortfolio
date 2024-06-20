@@ -1,14 +1,37 @@
-<a href="#" class="text-xl font-bold">
-    <h1>Logo</h1>
-</a>
+<style>
+    .active-link {
+        position: relative;
+        text-decoration: none;
+        color: #000;
+    }
+
+    .active-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        transition: all 0.3s ease;
+        transform: scaleX(0);
+        transform-origin: bottom left;
+    }
+
+    .active-link:hover::after,
+    .active-link.active::after {
+        transform: scaleX(1);
+    }
+</style>
+
 <nav class="w-full flex items-center justify-center mt-4 md:mt-0 space-x-5">
-    <a class="block md:inline-block px-4 py-2 {% if active == 'portfolio' %}underline{% endif %} hover:text-amber-400" href="{{ path('app_main') }}">
+    <a class="active-link underline-animation block md:inline-block px-4 py-2 {% if active == 'portfolio' %}active{% endif %}" href="{{ path('app_main') }}">
         Portfolio
     </a>
-    <a class="block md:inline-block px-4 py-2 {% if active == 'about' %}underline{% endif %} hover:text-amber-400" href="#">
+    <a class="active-link underline-animation block md:inline-block px-4 py-2 {% if active == 'about' %}active{% endif %}" href="#">
         About me
     </a>
-    <a class="block md:inline-block px-4 py-2 {% if active == 'contact' %}underline{% endif %} hover:text-amber-400" href="#">
+    <a class="active-link underline-animation block md:inline-block px-4 py-2 {% if active == 'contact' %}active{% endif %}" href="#">
         Contact
     </a>
 </nav>
