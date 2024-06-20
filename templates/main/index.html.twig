@@ -19,10 +19,10 @@
       </div>
 
       <div class="flex-1 ml-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
           {% for photo in photos %}
-            <div class="w-full">
-              <img src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error" class="w-full h-auto object-cover">
+            <div class="grid gap-4">
+              <img src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error" class="h-full w-full rounded-lg">
             </div>
           {% endfor %}
         </div>
