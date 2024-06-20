@@ -4,10 +4,6 @@
 
 {% set active = 'portfolio' %}
 
-{% block stylesheets %}
-  {{ parent() }}
-{% endblock %}
-
 {% block body %}
   <div class="container mx-auto p-6 min-h-screen">
     <div class="flex flex-col md:flex-row items-start p-6">
@@ -19,7 +15,7 @@
       </div>
 
       <div class="flex-1 mt-6 md:mt-0">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {% for photo in photos %}
             <div class="w-full">
               <img src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error" class="w-full h-full rounded-lg">
