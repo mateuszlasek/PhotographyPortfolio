@@ -9,12 +9,23 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class MainController extends AbstractController
 {
-    #[Route('/main', name: 'app_main')]
+    #[Route('/', name: 'app_main')]
     public function index(PhotoRepository $photoRepository): Response
     {
         $photos = $photoRepository->findAll();
 
         return $this->render('main/index.html.twig', [
+            'controller_name' => 'MainController',
+            'photos' => $photos
+        ]);
+    }
+
+    #[Route('/portfolio', name: 'portfolio')]
+    public function portfolio(PhotoRepository $photoRepository): Response
+    {
+        $photos = $photoRepository->findAll();
+
+        return $this->render('main/portfolio.html.twig', [
             'controller_name' => 'MainController',
             'photos' => $photos
         ]);
