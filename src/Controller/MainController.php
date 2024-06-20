@@ -29,9 +29,15 @@ class MainController extends AbstractController
     }
 
     #[Route('/portfolio', name: 'portfolio')]
-    public function portfolio(PhotoRepository $photoRepository): Response
+    public function portfolio(PhotoRepository $photoRepository, CacheInterface $cache): Response
     {
-        $photos = $photoRepository->findAll();
+        $cacheKey = 'portfolio_index_photos';
+
+        $photos = $cache->get($cacheKey, function (ItemInterface $item) use ($photoRepository) {
+            $item->expiresAfter(3600);
+
+            return $photoRepository->findAll();
+        });
 
         return $this->render('main/portfolio.html.twig', [
             'controller_name' => 'MainController',
