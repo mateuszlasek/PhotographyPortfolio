@@ -57,9 +57,7 @@ class MainController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/contact", name="contact")
-     */
+    #[Route('/kontakt', name: 'contact')]
     public function contact(Request $request, MailerInterface $mailer): Response
     {
         $form = $this->createForm(ContactType::class);

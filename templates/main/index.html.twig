@@ -17,8 +17,8 @@
       <div class="flex-1 mt-6 md:mt-0">
         <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {% for photo in photos %}
-            <div class="w-full">
-              <img loading="lazy" src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error" class="w-full h-full rounded-lg">
+            <div>
+              <img class="h-auto max-w-full rounded-lg" loading="lazy" src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error" width="400" height="300">
             </div>
           {% endfor %}
         </div>

@@ -30,3 +30,6 @@ body {
     transform: scaleX(1);
 }
 
+.hidden-until-load {
+    display: none;
+}
