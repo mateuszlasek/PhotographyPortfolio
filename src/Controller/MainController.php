@@ -54,8 +54,29 @@ class MainController extends AbstractController
     }
 
     #[Route('/kontakt', name: 'contact')]
-    public function contact(): Response
+    public function contact(Request $request): Response
     {
+        // Przetwarzanie formularza po jego przesłaniu
+        if ($request->isMethod('POST')) {
+            $name = $request->request->get('name');
+            $email = $request->request->get('email'); // Pobranie wartości z pola "email"
+
+            // Tutaj dodaj logikę wysyłania wiadomości e-mail na podany adres
+            // Możesz użyć komponentu Swift Mailer lub innego narzędzia do wysyłania e-maili
+
+            // Przykład użycia Swift Mailer:
+            $message = (new \Swift_Message('Nowa wiadomość ze strony kontaktowej'))
+                ->setFrom('noreply@example.com')
+                ->setTo('example@email.com')
+                ->setBody("Wiadomość od: $name\nE-mail: $email");
+
+            $mailer = $this->get('mailer');
+            $mailer->send($message);
+
+
+            return $this->redirectToRoute('confirmation');
+        }
+
         return $this->render('main/contact.html.twig', [
             'controller_name' => 'MainController',
         ]);
