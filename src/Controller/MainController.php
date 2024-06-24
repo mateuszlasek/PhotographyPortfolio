@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Form\ContactType;
 use App\Repository\PhotoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -53,32 +57,38 @@ class MainController extends AbstractController
         ]);
     }
 
-    #[Route('/kontakt', name: 'contact')]
-    public function contact(Request $request): Response
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact(Request $request, MailerInterface $mailer): Response
     {
-        // Przetwarzanie formularza po jego przesłaniu
-        if ($request->isMethod('POST')) {
-            $name = $request->request->get('name');
-            $email = $request->request->get('email'); // Pobranie wartości z pola "email"
+        $form = $this->createForm(ContactType::class);
 
-            // Tutaj dodaj logikę wysyłania wiadomości e-mail na podany adres
-            // Możesz użyć komponentu Swift Mailer lub innego narzędzia do wysyłania e-maili
+        $form->handleRequest($request);
 
-            // Przykład użycia Swift Mailer:
-            $message = (new \Swift_Message('Nowa wiadomość ze strony kontaktowej'))
-                ->setFrom('noreply@example.com')
-                ->setTo('example@email.com')
-                ->setBody("Wiadomość od: $name\nE-mail: $email");
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
 
-            $mailer = $this->get('mailer');
-            $mailer->send($message);
+            $email = (new Email())
+                ->from($data['email'])
+                ->to('mateusz.lasek17@wp.pl')
+                ->subject('Nowa wiadomość kontaktowa')
+                ->text(sprintf(
+                    'Nadawca: %s (%s)\n\nWiadomość:\n%s',
+                    $data['name'],
+                    $data['email'],
+                    $data['message']
+                ));
 
+            $mailer->send($email);
 
-            return $this->redirectToRoute('confirmation');
+            $this->addFlash('success', 'Twoja wiadomość została wysłana!');
+
+            return $this->redirectToRoute('contact');
         }
 
-        return $this->render('main/contact.html.twig', [
-            'controller_name' => 'MainController',
+        return $this->render('contact/contact.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
