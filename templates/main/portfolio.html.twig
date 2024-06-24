@@ -10,10 +10,10 @@
             <h1 class="text-4xl mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1>
             <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
         </div>
-        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
             {% for photo in photos %}
-                <div class="w-full">
-                    <img src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error" class="w-full h-full rounded-lg">
+                <div>
+                    <img class="h-auto max-w-full rounded-lg"  width="500" height="400" src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error">
                 </div>
             {% endfor %}
         </div>
