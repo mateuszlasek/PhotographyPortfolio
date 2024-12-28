@@ -9,7 +9,7 @@ body {
 .active-link {
     position: relative;
     text-decoration: none;
-    color: #000;
+    color: #D1D5DB;
 }
 
 .active-link::after {
@@ -18,9 +18,9 @@ body {
     left: 0;
     bottom: -2px;
     width: 100%;
-    height: 2px;
-    background-color: #000;
-    transition: all 0.3s ease;
+    height: 1px;
+    background-color: #D1D5DB;
+    transition: all 150ms ease;
     transform: scaleX(0);
     transform-origin: bottom left;
 }
