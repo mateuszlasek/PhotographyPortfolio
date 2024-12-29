@@ -1,3 +1,5 @@
+{# templates/main/contact.html.twig #}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Kontakt{% endblock %}
@@ -6,38 +8,41 @@
     <div class="container mx-auto p-6">
         <div class="text-center mb-10">
             <h1 class="text-4xl mb-4">Kontakt</h1>
-            <p class="text-lg"><strong>Email:</strong> <a href="mailto:example@email.com">example@email.com</a></p>
-            <p class="text-lg"><strong>Telefon:</strong> (+48) 123 456 789</p>
-            <p class="text-lg"><strong>Instagram:</strong> <a href="instagram.com/lasek_szymon">instagram.com/lasek_szymon</a></p>
+            <p class="text-lg">Email: <a href="mailto:example@email.com">example@email.com</a></p>
+            <p class="text-lg">Telefon: (+48) 123 456 789</p>
+            <p class="text-lg">Instagram: <a href="https://www.instagram.com/szymonlasek" target="_blank">instagram.com/szymonlasek</a></p>
         </div>
 
         <div class="max-w-4xl mx-auto bg-zinc-800 p-10 rounded-xl shadow-xl">
             <h2 class="text-3xl text-center mb-6">Formularz kontaktowy</h2>
-            <form action="#" method="POST">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label for="name" class="block text-gray-400 mb-2">Imię i nazwisko</label>
-                        <input type="text" id="name" name="name" required
-                               class="w-full p-4 bg-zinc-700 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-gray-400 mb-2">Adres email</label>
-                        <input type="email" id="email" name="email" required
-                               class="w-full p-4 bg-zinc-700 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
+
+            {# Wyświetlanie komunikatu sukcesu #}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
                 </div>
-                <div class="mb-6">
-                    <label for="message" class="block text-gray-400 mb-2">Wiadomość</label>
-                    <textarea id="message" name="message" rows="6" required
-                              class="w-full p-4 bg-zinc-700 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            {% endfor %}
+
+            {# Wyświetlanie formularza #}
+            {{ form_start(form) }}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name, { 'attr': { 'class': 'w-full p-4 bg-zinc-700 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500' } }) }}
                 </div>
-                <div class="text-center">
-                    <button type="submit"
-                            class="px-8 py-4 bg-zinc-700 text-gray-400 font-semibold rounded-lg hover:bg-zinc-900 transition duration-300">
-                        Wyślij
-                    </button>
+                <div>
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email, { 'attr': { 'class': 'w-full p-4 bg-zinc-700 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500' } }) }}
                 </div>
-            </form>
+            </div>
+            <div class="mb-6">
+                {{ form_label(form.message) }}
+                {{ form_widget(form.message, { 'attr': { 'class': 'w-full p-4 bg-zinc-700 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500', 'rows': 6 } }) }}
+            </div>
+            <div class="text-center w-auto bg-zinc-700 text-gray-400 font-semibold rounded-lg hover:bg-zinc-900 transition duration-300">
+                {{ form_widget(form.submit, {'attr': {'class': 'px-4 py-2 w-auto'}}) }}
+            </div>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Form\ContactType;
 use App\Repository\PhotoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -54,10 +58,31 @@ class MainController extends AbstractController
     }
 
     #[Route('/kontakt', name: 'contact')]
-    public function contact(): Response
+    public function contact(Request $request, MailerInterface $mailer): Response
     {
+        $form = $this->createForm(ContactType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $email = (new Email())
+                ->from($data['email'])
+                ->to('mateusz.lasek@student.up.krakow.pl')
+                ->subject('Wiadomość kontaktowa')
+                ->text('Imię: ' . $data['name'] . "\nWiadomość: " . $data['message']);
+
+            $mailer->send($email);
+
+            $this->addFlash('success', 'Wiadomość została wysłana!');
+
+            return $this->redirectToRoute('contact');
+        }
+
         return $this->render('main/contact.html.twig', [
             'controller_name' => 'MainController',
+            'form' => $form->createView(),
         ]);
     }
 }
