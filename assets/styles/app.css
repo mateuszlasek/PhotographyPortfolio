@@ -30,3 +30,29 @@ body {
     transform: scaleX(1);
 }
 
+/* gallery.css */
+#image-popup {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    visibility: hidden;
+}
+
+#popup-image {
+    max-width: 90%;
+    max-height: 80vh;
+}
+
+.photo-thumbnail {
+    transition: transform 0.2s ease-in-out;
+}
+
+.photo-thumbnail:hover {
+    transform: scale(1.05);
+}
+

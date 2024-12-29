@@ -1,20 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}About Me{% endblock %}
+{% block title %}O mnie{% endblock %}
 
 {% set active = 'about' %}
 
 {% block body %}
-    <div class="container mx-auto p-6 min-h-screen flex justify-center items-center">
-        <div class="flex flex-col md:flex-row items-start max-w-screen-md">
-            <div class="md:w-1/2 md:p-6">
-                <img src="{{ asset('images/nike_jordan_red_cropped.webp') }}" alt="Your Photo" class="w-full h-full md:max-w-sm rounded-lg mx-auto md:mx-0">
+    <div class="container mx-auto p-6">
+        <!-- Nagłówek -->
+        <div class="text-center mb-10">
+            <h1 class="text-4xl mb-4">O mnie</h1>
+            <p class="text-lg text-gray-300">
+                Fotograf z pasją do uwieczniania produktów w ich najlepszym świetle. Profesjonalne podejście i artystyczne oko.
+            </p>
+        </div>
+
+        <!-- Sekcja z treścią -->
+        <div class="max-w-4xl mx-auto bg-zinc-800 p-10 rounded-xl shadow-xl flex flex-col md:flex-row items-center gap-6">
+            <!-- Zdjęcie -->
+            <div class="md:w-1/3 flex-shrink-0">
+                <img src="{{ asset('images/nike_jordan_red_cropped.webp') }}" alt="Twoje zdjęcie"
+                     class="rounded-lg shadow-lg object-cover w-full h-auto">
             </div>
 
-            <div class="md:w-1/2 md:p-6">
-                <h1 class="text-4xl mb-4">O mnie</h1>
-                <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p class="text-lg">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <!-- Tekst -->
+            <div class="md:w-2/3">
+                <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                    Nazywam się Szymon i specjalizuję się w fotografii produktowej. Moje zdjęcia pomagają markom wyróżniać się w tłumie,
+                    podkreślając detale i wyjątkowość każdego produktu. Każda sesja to dla mnie szansa na odkrywanie nowych sposobów
+                    przedstawiania rzeczywistości.
+                </p>
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    Poza pracą jestem miłośnikiem minimalizmu i dobrego designu, co przekłada się na estetykę moich prac. Uwielbiam kawę,
+                    podróże i dobrą literaturę. Jeśli chcesz dowiedzieć się więcej lub porozmawiać o współpracy, zapraszam do kontaktu!
+                </p>
             </div>
         </div>
     </div>

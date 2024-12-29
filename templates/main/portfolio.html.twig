@@ -2,20 +2,52 @@
 
 {% block title %}Portfolio{% endblock %}
 
-{% set active = 'portfolio' %}
-
 {% block body %}
-    <div class="container mx-auto p-6 min-h-screen">
+    <div class="container mx-auto p-6 min-h-screen" data-controller="gallery">
+        <!-- Nagłówek i opis -->
         <div class="text-center mb-6">
             <h1 class="text-4xl mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1>
-            <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+            <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
+
+        <!-- Galeria zdjęć -->
         <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {% for photo in photos %}
                 <div class="w-full">
-                    <img src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error" class="w-full h-full rounded-lg">
+                    <img
+                            src="{{ asset('images/' ~ photo.fileName) }}"
+                            alt="{{ photo.fileName }} load error"
+                            class="w-full h-full rounded-lg cursor-pointer photo-thumbnail"
+                            data-action="click->gallery#openPopup"
+                            data-gallery-target="image"
+                            data-full-image="{{ asset('images/' ~ photo.fileName) }}"
+                            data-index="{{ loop.index }}">
                 </div>
             {% endfor %}
+        </div>
+
+        <!-- Popup na zdjęcia -->
+        <div id="image-popup"
+             class="fixed inset-0 bg-black bg-opacity-75 hidden justify-center items-center z-50"
+             data-gallery-target="popup"
+             style="visibility: hidden;"> <!-- Popup ukryty domyślnie -->
+            <div class="relative max-w-3xl">
+                <button id="close-popup"
+                        class="absolute top-4 right-4 text-white text-3xl bg-transparent border-0"
+                        data-action="click->gallery#closePopup">×</button>
+
+                <div class="flex justify-between items-center">
+                    <button id="prev"
+                            class="text-white text-4xl bg-transparent border-0 px-4"
+                            data-action="click->gallery#prevImage">←</button>
+                    <img id="popup-image"
+                         class="max-w-full h-auto rounded-lg shadow-lg mx-auto"
+                         data-gallery-target="popupImage"/>
+                    <button id="next"
+                            class="text-white text-4xl bg-transparent border-0 px-4"
+                            data-action="click->gallery#nextImage">→</button>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

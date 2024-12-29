@@ -10,7 +10,7 @@ use App\Entity\Photo;
 
 class PhotoFixtures extends Fixture
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $imagesDirectory = __DIR__ . '/../../assets/images/';
 

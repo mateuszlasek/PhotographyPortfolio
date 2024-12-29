@@ -1,28 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Strona główna{% endblock %}
-
-{% set active = 'main' %}
+{% block title %}Portfolio Produktowe - Szymon Lasek{% endblock %}
 
 {% block body %}
   <div class="container mx-auto p-6 min-h-screen">
-    <div class="flex flex-col md:flex-row items-start p-6">
-      <div class="md:w-1/3 md:sticky md:top-1/2 md:transform md:-translate-y-1/2 p-6">
-        <div class="mb-6 md:mb-0">
-          <h1 class="text-4xl mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1>
-          <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-        </div>
-      </div>
 
-      <div class="flex-1 mt-6 md:mt-0">
-        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {% for photo in photos %}
-            <div class="w-full">
-              <img loading="lazy" src="{{ asset('images/' ~ photo.fileName) }}" alt="{{ photo.fileName }} load error" class="w-full h-full rounded-lg">
-            </div>
-          {% endfor %}
-        </div>
+    <div data-controller="home" class="flex  items-center space-x-4">
+      <img data-target="home.image" src="{{ asset('images/szymon_siedzi_xd.png') }}" alt="Szymon Siedzi" class="w-300 h-300 mr-20"/>
+      <div class="flex-col ">
+        <h1 data-target="home.name" class="text-4xl text-white">Szymon Lasek</h1>
+        <p>photographer</p>
+        <p>top 3 gay in poland</p>
       </div>
     </div>
+
+    <section class="product-photos mb-16">
+      <h2 class="text-3xl font-semibold mb-6">Zdjęcia Produktowe</h2>
+      <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="photo-card">
+          <img loading="lazy" src="{{ asset('images/bombay_sapphire_cropped.webp') }}" alt="bombay sapphire" class="w-full h-full rounded-lg shadow-lg">
+        </div>
+        <div class="photo-card">
+          <img loading="lazy" src="{{ asset('images/jaggermeister_cropped.webp') }}" alt="jaggermeister" class="w-full h-full rounded-lg shadow-lg">
+        </div>
+        <div class="photo-card">
+          <img loading="lazy" src="{{ asset('images/lubuski_gin_cropped.webp') }}" alt="lubuski gin" class="w-full h-full rounded-lg shadow-lg">
+        </div>
+      </div>
+    </section>
+
+    <section class="composition-photos mb-16">
+      <h2 class="text-3xl font-semibold mb-6">Kompozycje Produktowe</h2>
+      <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="photo-card">
+          <img loading="lazy" src="{{ asset('images/bombay_sapphire_cropped.webp') }}" alt="bombay sapphire" class="w-full h-full rounded-lg shadow-lg">
+        </div>
+        <div class="photo-card">
+          <img loading="lazy" src="{{ asset('images/jaggermeister_cropped.webp') }}" alt="jaggermeister" class="w-full h-full rounded-lg shadow-lg">
+        </div>
+        <div class="photo-card">
+          <img loading="lazy" src="{{ asset('images/lubuski_gin_cropped.webp') }}" alt="lubuski gin" class="w-full h-full rounded-lg shadow-lg">
+        </div>
+      </div>
+    </section>
+
+    <section class="other-photos">
+      <h2 class="text-3xl font-semibold mb-6">Inne</h2>
+      <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="photo-card">
+          <img loading="lazy" src="{{ asset('images/bombay_sapphire_cropped.webp') }}" alt="bombay sapphire" class="w-full h-full rounded-lg shadow-lg">
+        </div>
+        <div class="photo-card">
+          <img loading="lazy" src="{{ asset('images/jaggermeister_cropped.webp') }}" alt="jaggermeister" class="w-full h-full rounded-lg shadow-lg">
+        </div>
+        <div class="photo-card">
+          <img loading="lazy" src="{{ asset('images/lubuski_gin_cropped.webp') }}" alt="lubuski gin" class="w-full h-full rounded-lg shadow-lg">
+        </div>
+      </div>
+    </section>
+
   </div>
 {% endblock %}
