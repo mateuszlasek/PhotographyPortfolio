@@ -8,19 +8,17 @@ export default class extends Controller {
     }
 
     connect() {
-        this.hidePopup(); // Ukrywamy popup po załadowaniu kontrolera
+        this.hidePopup();
     }
 
     openPopup(event) {
-        // Pokazuje popup
         this.popupTarget.classList.remove("hidden");
-        this.popupTarget.style.visibility = "visible"; // Ustawiamy widoczność popupu
+        this.popupTarget.style.visibility = "visible";
         this.popupImageTarget.src = event.target.dataset.fullImage;
         this.currentIndex = this.getImageIndex(event.target.dataset.fullImage);
     }
 
     closePopup() {
-        // Ukrywa popup
         this.popupTarget.style.visibility = "hidden";
     }
 
@@ -35,15 +33,14 @@ export default class extends Controller {
     }
 
     get images() {
-        return [...this.imageTargets]; // Zwraca tablicę wszystkich obrazków
+        return [...this.imageTargets];
     }
 
     getImageIndex(imageSrc) {
-        return this.images.findIndex(image => image.dataset.fullImage === imageSrc); // Zwraca indeks obrazka
+        return this.images.findIndex(image => image.dataset.fullImage === imageSrc);
     }
 
     hidePopup() {
-        // Ukrywa popup na początku
         this.popupTarget.style.visibility = "hidden";
     }
 }
