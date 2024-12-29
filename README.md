@@ -1,2 +1,2 @@
-## Photography portfolio website
+## Photography portfolio
 Simple portfolio website
